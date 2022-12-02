@@ -2,6 +2,7 @@ from flask import Blueprint, redirect, render_template, request, send_from_direc
 
 login_views = Blueprint('login_views', __name__, template_folder='../templates')
 
-@login_views.route('/', methods=['GET'])
+@loin_views('/')
+@login_views.route('/login', methods=['GET'])
 def login_page():
     return render_template('login.html')
