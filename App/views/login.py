@@ -10,7 +10,7 @@ def login_page():
 @login_views.route('/login', methods=['POST'])
 def loginAction():
     data = request.form
-    user = User.query.filter_by(username = data['username']).first()
+    user = user.query.filter_by(username = data['username']).first()
     if user and user.check_password(data['password']):
         flash('Logged in successfully.')
         login_user(user)
