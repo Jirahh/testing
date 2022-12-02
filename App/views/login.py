@@ -1,5 +1,10 @@
 from flask import Blueprint, redirect, render_template, request, send_from_directory
+from flask_jwt import jwt_required
 from flask_login import LoginManager, current_user, login_user, login_required
+
+from App.controllers import (
+    get_user_by_username
+)
 
 login_views = Blueprint('login_views', __name__, template_folder='../templates')
 
