@@ -20,7 +20,8 @@ from App.views import (
     rating_views,
     ranking_views,
     index_views,
-    login_views
+    login_views,
+    signup_views
 )
 
 # New views must be imported and added to this list
@@ -31,8 +32,16 @@ views = [
     rating_views,
     ranking_views,
     index_views,
-    login_views
+    login_views,
+    signup_views
 ]
+
+
+login_manager = LoginManager()
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(user_id)
+
 
 def add_views(app, views):
     for view in views:
@@ -60,6 +69,7 @@ def loadConfig(app, config):
 def create_app(config={}):
     app = Flask(__name__, static_url_path='/static')
     CORS(app)
+    login_manager.init_app(app)
     loadConfig(app, config)
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     app.config['TEMPLATES_AUTO_RELOAD'] = True
